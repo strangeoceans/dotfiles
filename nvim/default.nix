@@ -1,22 +1,13 @@
 {
   nixosConfig,
   lib,
-  pkgs-unstable,
-  inputs,
+  pkgs,
+  clib,
   ...
 }:
-with lib;
-
 {
-  disabledModules = [
-    "programs/neovim.nix"
-  ];
-  imports = [
-    "${inputs.home-manager-unstable}/modules/programs/neovim.nix"
-  ];
-
-  config = mkIf nixosConfig.programs.neovim.enable {
-    home.packages = with pkgs-unstable; [
+  config = lib.mkIf (clib.shouldInclude "neovim" nixosConfig.host) {
+    home.packages = with pkgs; [
       nixd
       lua-language-server
       pyright
@@ -30,11 +21,12 @@ with lib;
       viAlias = true;
       vimAlias = true;
       plugins =
-        with pkgs-unstable.vimPlugins;
+        with pkgs.vimPlugins;
         let
-          alabaster = pkgs-unstable.vimUtils.buildVimPlugin {
-            name = "alabaster";
-            src = pkgs-unstable.fetchFromSourcehut {
+          alabaster = pkgs.vimUtils.buildVimPlugin {
+            pname = "alabaster";
+            version = "0.0.1";
+            src = pkgs.fetchFromSourcehut {
               owner = "~p00f";
               repo = "alabaster.nvim";
               rev = "1fc9e29f";
@@ -58,6 +50,8 @@ with lib;
           nvim-cmp
           nvim-highlight-colors
           barbar-nvim
+          claude-code-nvim
+          plenary-nvim
         ];
     };
 

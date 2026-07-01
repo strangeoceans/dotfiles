@@ -25,18 +25,6 @@ require('lualine').setup {
         file_status = true,
         path = 1,
       },
-      {
-        function()
-            local harpoon = require("harpoon")
-            local current = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
-            for i, item in ipairs(harpoon:list().items) do
-              if vim.fn.fnamemodify(item.value, ":p") == current then
-                return "󰛢" .. i
-              end
-            end
-            return ""
-        end
-      },
     },
     lualine_x = {
       {
@@ -51,16 +39,9 @@ require('lualine').setup {
         show_name = true,
       }
     },
-    lualine_y = {
-      'location',
-    },
+    lualine_y = {},
     lualine_z = {
-      {
-        function()
-          return os.date('%H:%M')
-        end,
-        icon = ' '
-      }
+      'location',
     }
   },
   inactive_sections = {

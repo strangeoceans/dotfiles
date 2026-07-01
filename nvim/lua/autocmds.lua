@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd("TermOpen", {
-	pattern = "*",
+	pattern = "term://*claude*",
 	callback = function()
-		vim.api.nvim_feedkeys("A", "n", false)
+    vim.opt.buflisted = false
 	end,
 })
 
