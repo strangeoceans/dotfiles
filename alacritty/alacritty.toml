@@ -1,0 +1,44 @@
+[colors.primary]
+background = "#242933"
+foreground = "#C0C8D8"
+
+[colors.vi_mode_cursor]
+cursor = "#C8EBAD"
+
+[font]
+size = 12
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[general]
+working_directory = "$HOME"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = ","
+mods = "Control"
+
+[terminal.shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/nix/store/358sk8371mkz87iq17kw4qcyyi6sps0k-zsh-5.9/bin/zsh"
+
+[window]
+decorations = "None"
+
+[window.padding]
+x = 6
+y = 6
